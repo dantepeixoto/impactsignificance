@@ -1,8 +1,10 @@
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
+from urlib.parse import urlparse
 
 url = input('Digite a URL do site em que deseja buscar documentos: ')
+urlprincipal = urlparse(url)
 
 baixados = set()
 
@@ -20,14 +22,17 @@ def baixador(url):
 	soup = BeautifulSoup(r.text, 'html.parser')
 	for a in soup.find_all('a'):
 		link = requests.compat.urljoin(url, a.get('href'))
-		if link in baixados:
+		if link in baixados
+			continue
+		if urlprincipal.netloc not in link:
 			continue
 		baixados.add(link)
 		print(link)
 
-		if link.endswith('.pdf'):
-			salva_pdf(link)
-		elif link.endswith('/'):
-			baixador(link)
+		if urlprincipal.netloc in link:
+			if link.endswith('.pdf'):
+				salva_pdf(link)
+			elif link.endswith('/'):
+				baixador(link)
 
 baixador(url)
