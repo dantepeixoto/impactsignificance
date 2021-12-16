@@ -7,11 +7,12 @@ url = input('Digite a URL do site em que deseja buscar documentos: ')
 baixados = set()
 
 pasta = Path('download')
-pasta.parent.mkdir(exist_ok=True)
+pasta.mkdir(exist_ok=True)
 
 def salva_pdf(url):
 	print('salvando PDF: ',url)
-	pdf = pasta/url.replace('https://', '/').replace('http://', '/')
+	pdf = pasta/url.replace('https://', '').replace('http://', '')
+	pdf.parent.mkdir(parents=True, exist_ok=True)
 	pdf.write_bytes(requests.get(url).content)
 
 def baixador(url):
