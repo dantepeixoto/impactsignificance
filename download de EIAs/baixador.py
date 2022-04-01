@@ -28,7 +28,9 @@ def baixador(url):
 		if urlprincipal.netloc and urlprincipal.path not in link:
 			continue
 		baixados.add(link)
+		# log
 		print(link)
+
 
 		if urlprincipal.netloc and urlprincipal.path in link:
 			if link.endswith('.pdf'):
