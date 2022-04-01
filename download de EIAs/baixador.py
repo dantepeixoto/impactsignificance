@@ -28,7 +28,7 @@ def baixador(url):
 		if urlprincipal.netloc and urlprincipal.path not in link:
 			continue
 		baixados.add(link)
-		# log
+		# log #
 		print(link)
 
 
