@@ -34,7 +34,9 @@ def baixador(url):
 
         if urlprincipal.netloc in link_netloc:
             if link.endswith('.pdf'):
-                salva_pdf(link)
+                pdf = pasta / link.replace('https://', '').replace('http://', '')
+                if not pdf.is_file():
+                    salva_pdf(link)
             elif link.endswith('/'):
                 baixador(link)
 
